@@ -1,0 +1,324 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-image: url("../images/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Roboto", sans-serif;
+
+  font-size: 16px;
+}
+body:after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.412);
+  z-index: -1;
+}
+
+.container {
+  height: 100vh;
+  position: relative;
+}
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  list-style: none;
+}
+.item {
+  /* padding: 0.8em; */
+  padding: 10px;
+  color: white;
+}
+.item i {
+  padding: 10px;
+}
+.hamburger-menu {
+  flex: 0 1 auto;
+  text-align: center;
+}
+.logo {
+  flex: 1 1 auto;
+  padding: 20px 0 20px 20px;
+}
+.google-border {
+  border-radius: 50%;
+  border-left: 3px solid rgba(255, 255, 0, 0.6);
+  border-top: 3px solid rgba(255, 0, 0, 0.6);
+  border-right: 3px solid rgba(0, 0, 255, 0.6);
+  border-bottom: 3px solid rgba(0, 128, 0, 0.6);
+}
+.profile-img {
+  width: 50px;
+  height: 50px;
+  margin-right: 15px;
+}
+.item i {
+  font-size: 1.2rem;
+  color: white;
+}
+.sub-menu {
+  height: 30vh;
+  margin-top: 50%;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+.sub-item {
+  padding: 5%;
+}
+.sub-item i {
+  color: white;
+  font-size: 1.2rem;
+}
+.main-section {
+  width: 100%;
+  height: 99vh;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1vh;
+}
+.greeting-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: white;
+  padding: 5%;
+  width: 52%;
+  height: 50vh;
+}
+.greeeting-header {
+  margin-bottom: 2%;
+}
+.icons-container {
+  margin-top: 10%;
+  width: 50%;
+  height: 30vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.icon-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  margin: 5%;
+}
+.icon-box i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10%;
+}
+.icon-box i:hover {
+  background-color: rgba(255, 255, 255, 0.172);
+}
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  background-color: #fff;
+  border-radius: 5px;
+  width: 32%;
+  height: 85vh;
+  margin-top: 5vh;
+}
+.msg-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-basis: 10vh;
+  padding: 3%;
+}
+#new-msg {
+  border-bottom: 2px solid whitesmoke;
+}
+
+.msg-profile img,
+.msg-profile i,
+.msg-profile b {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+}
+.msg-content {
+  margin-left: 5%;
+}
+.msg-username {
+  font-weight: bold;
+}
+.msg-text {
+  display: flex;
+  overflow: hidden;
+  max-height: 20px;
+}
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: white;
+  padding: 1%;
+  width: 20vw;
+}
+.footer img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5%;
+}
+
+.bg-green {
+  background-color: green;
+}
+.bg-pink {
+  background-color: palevioletred;
+}
+.bg-orange {
+  background-color: orange;
+}
+.bg-purple {
+  background-color: purple;
+}
+
+@media screen and (min-width: 0px) {
+  .main-section {
+    flex-direction: column;
+    width: 100%;
+    height: 200vh;
+  }
+  .greeting-container {
+    width: 85%;
+    height: 91vh;
+    margin-top: 10vh;
+    margin-left: 15%;
+    padding: 0;
+  }
+  .icons-container {
+    width: 90%;
+    height: 10vh;
+  }
+  .icon-box {
+    height: 10vh;
+    margin: 3%;
+  }
+  .icon-box i {
+    width: 50px;
+    height: 50px;
+  }
+  .icon-box span {
+    font-size: 0.7rem;
+  }
+  .messages-container {
+    width: 80%;
+    height: 80vh;
+    margin-top: 10vh;
+    margin-left: 10%;
+    padding: 0;
+    font-size: 0.8rem;
+  }
+  .msg-box {
+    padding: 5% 5%;
+  }
+  .footer {
+    position: static;
+    width: 100%;
+    font-size: 0.6rem;
+  }
+  .footer img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+}
+@media screen and (min-width: 480px) {
+  .messages-container {
+    width: 70%;
+    height: 80vh;
+    margin-left: 5%;
+    font-size: 0.9rem;
+  }
+  .msg-box {
+    padding: 5% 5%;
+  }
+}
+@media screen and (min-width: 720px) {
+  .messages-container {
+    width: 50%;
+    height: 80vh;
+    margin-left: -20%;
+  }
+  .msg-box {
+    padding: 4% 5%;
+  }
+}
+@media screen and (min-width: 960px) {
+  .main-section {
+    width: 100%;
+    height: 99vh;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1vh;
+  }
+  .greeting-container {
+    padding: 5%;
+    width: 52%;
+    height: 50vh;
+    margin: 0;
+  }
+  .messages-container {
+    width: 32%;
+    height: 85vh;
+    margin-top: 5vh;
+    margin-left: 0;
+  }
+  .footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 1%;
+    width: 20vw;
+  }
+  .footer img {
+    margin-right: 5%;
+  }
+}
+@media screen and (min-width: 1140px) {
+  .footer {
+    font-size: 0.75rem;
+  }
+  .footer img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5%;
+  }
+}
