@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/8eae48340f.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./Styles/style.css" />
+    <title>Calculator</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="calculator-container">
+        <nav>
+          <ul class="navbar">
+            <li class="item"><i class="fas fa-bars"></i></li>
+            <li class="item item2">Standard</li>
+            <li class="item"><i class="fas fa-history"></i></li>
+          </ul>
+        </nav>
+
+        <div class="display-container">
+          <h1 class="display-text">0</h1>
+          <div class="memory-options">
+            <div class="memory-key">MC</div>
+            <div class="memory-key">MR</div>
+            <div class="memory-key">M+</div>
+            <div class="memory-key">M-</div>
+            <div class="memory-key">MS</div>
+            <div class="memory-key">M*</div>
+          </div>
+        </div>
+        <div class="key-container">
+          <div class="key fr color1">%</div>
+          <div class="key fr color1">CE</div>
+          <div class="key fr color1">C</div>
+          <div class="key fr color1"><i class="fas fa-backspace"></i></div>
+
+          <div class="key color2 one">1/x</div>
+          <div class="key color2 two">x^2</div>
+          <div class="key color2 three">
+            <i class="fas fa-square-root-alt"></i>
+          </div>
+          <div class="key color2 four show-960">x^3</div>
+          <div class="key color2 five"><i class="fas fa-divide"></i></div>
+
+          <div class="row row1">
+            <div class="key">7</div>
+            <div class="key">8</div>
+            <div class="key">9</div>
+            <div class="key">x</div>
+          </div>
+          <div class="row row2">
+            <div class="key">4</div>
+            <div class="key">5</div>
+            <div class="key">6</div>
+            <div class="key">-</div>
+          </div>
+          <div class="row row3">
+            <div class="key">1</div>
+            <div class="key">2</div>
+            <div class="key">3</div>
+            <div class="key">+</div>
+          </div>
+          <div class="row row4">
+            <div class="key">+/-</div>
+            <div class="key">0</div>
+            <div class="key">.</div>
+            <div class="key color2">=</div>
+          </div>
+        </div>
+      </div>
+      <div class="toggle-container show-720">
+        <div class="slide-controls">
+          <div class="slide history-btn" id="history-btn">History</div>
+          <div class="slide" id="memory-btn">Memory</div>
+        </div>
+        <div class="overflow-controller">
+          <div class="info-container">
+            <div class="history-info" id="history-info">
+              <p>There's no history yet</p>
+            </div>
+            <div class="memory-info" id="memory-info">
+              <p>There's no Memory yet</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./Script/script.js"></script>
+  </body>
+</html>
