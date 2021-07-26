@@ -21,14 +21,93 @@
       <div class="calculator-container">
         <nav>
           <ul class="navbar">
-            <li class="item"><i class="fas fa-bars"></i></li>
+            <li class="item">
+              <i id="menu-btn" class="fas fa-bars"></i>
+              <ul id="sub-menu" class="sub-menu">
+                <li class="sub-item">
+                  <b>Calculator</b>
+                </li>
+
+                <li class="sub-item">
+                  <a href="#"><i class="fas fa-clipboard"></i> Standard</a>
+                </li>
+
+                <li class="sub-item">
+                  <a href="#"><i class="fas fa-flask"></i> Scientific</a>
+                </li>
+                <li class="sub-item">
+                  <a href="#"><i class="fas fa-code"></i> Programmer</a>
+                </li>
+                <li class="sub-item">
+                  <a href="#"
+                    ><i class="fas fa-calculator"></i> Data Calculation</a
+                  >
+                </li>
+                <li class="sub-item">
+                  <b>Converter</b>
+                </li>
+                <li class="sub-item">
+                  <a href="#"><i class="fas fa-coins"></i>Currency</a>
+                </li>
+                <li class="sub-item">
+                  <a href="#"><i class="fas fa-cube"></i>Volume</a>
+                </li>
+                <li class="sub-item">
+                  <a href="#"><i class="fas fa-ruler"></i>Length</a>
+                </li>
+                <li class="sub-item">
+                  <a href="#"
+                    ><i class="fas fa-weight-hanging"></i>Weight and Mass</a
+                  >
+                </li>
+                <li class="sub-item">
+                  <a href="#"
+                    ><i class="fas fa-thermometer-three-quarters"></i
+                    >Temperature</a
+                  >
+                </li>
+                <li class="sub-item">
+                  <a href="#"><i class="fas fa-fire"></i>Energy</a>
+                </li>
+                <li class="sub-item">
+                  <a href="#"><i class="fas fa-th"></i>Area</a>
+                </li>
+                <li class="sub-item">
+                  <a href="#"><i class="fas fa-running"></i> Speed</a>
+                </li>
+                <li class="sub-item">
+                  <a href="#"><i class="fas fa-clock"></i> Time</a>
+                </li>
+                <li class="sub-item">
+                  <a href="#"><i class="fas fa-bolt"></i> Power</a>
+                </li>
+                <li class="sub-item">
+                  <a href="#"><i class="fas fa-database"></i> Data</a>
+                </li>
+                <li class="sub-item">
+                  <a href="#"
+                    ><i class="fas fa-tachometer-alt"></i> Presssure</a
+                  >
+                </li>
+                <li class="sub-item">
+                  <a href="#"><i class="fas fa-circle"></i> Angle</a>
+                </li>
+                <br />
+                <li class="sub-item">
+                  <a href="#"><i class="fas fa-info-circle"></i>About</a>
+                </li>
+              </ul>
+            </li>
+
             <li class="item item2">Standard</li>
             <li class="item"><i class="fas fa-history"></i></li>
           </ul>
         </nav>
 
         <div class="display-container">
-          <h1 class="display-text">0</h1>
+          <p id="temp-history" class="display-p">0</p>
+          <h1 id="display" class="display-text">0</h1>
+
           <div class="memory-options">
             <div class="memory-key">MC</div>
             <div class="memory-key">MR</div>
@@ -39,42 +118,46 @@
           </div>
         </div>
         <div class="key-container">
-          <div class="key fr color1">%</div>
-          <div class="key fr color1">CE</div>
-          <div class="key fr color1">C</div>
-          <div class="key fr color1"><i class="fas fa-backspace"></i></div>
+          <div class="operation key fr color1">%</div>
+          <div id="clear-last" class="key fr color1">CE</div>
+          <div id="clear-all" class="key fr color1">C</div>
+          <div id="backspace" class="key fr color1">
+            <i class="fas fa-backspace"></i>
+          </div>
 
           <div class="key color2 one">1/x</div>
-          <div class="key color2 two">x<sup>2</sup></div>
-          <div class="key color2 three">
+          <div id="square" class="key color2 two">x<sup>2</sup></div>
+          <div id="square-root" class="key color2 three">
             <i class="fas fa-square-root-alt"></i>
           </div>
-          <div class="key color2 four show-960">x<sup>3</sup></div>
-          <div class="key color2 five"><i class="fas fa-divide"></i></div>
+          <div id="cube" class="key color2 four show-960">x<sup>3</sup></div>
+          <div id="divide" class="key color2 five">
+            <i class="fas fa-divide"></i>
+          </div>
 
           <div class="row row1">
-            <div class="key">7</div>
-            <div class="key">8</div>
-            <div class="key">9</div>
-            <div class="key">x</div>
+            <div class="number key">7</div>
+            <div class="number key">8</div>
+            <div class="number key">9</div>
+            <div class="operation key">x</div>
           </div>
           <div class="row row2">
-            <div class="key">4</div>
-            <div class="key">5</div>
-            <div class="key">6</div>
-            <div class="key">-</div>
+            <div class="number key">4</div>
+            <div class="number key">5</div>
+            <div class="number key">6</div>
+            <div class="operation key">-</div>
           </div>
           <div class="row row3">
-            <div class="key">1</div>
-            <div class="key">2</div>
-            <div class="key">3</div>
-            <div class="key">+</div>
+            <div class="number key">1</div>
+            <div class="number key">2</div>
+            <div class="number key">3</div>
+            <div class="operation key">+</div>
           </div>
           <div class="row row4">
-            <div class="key">+/-</div>
-            <div class="key">0</div>
-            <div class="key">.</div>
-            <div class="key color2">=</div>
+            <div id="sign" class="key">+/-</div>
+            <div class="number key">0</div>
+            <div class="number key">.</div>
+            <div id="equal" class="key color2">=</div>
           </div>
         </div>
       </div>
@@ -96,5 +179,6 @@
       </div>
     </div>
     <script src="./Script/script.js"></script>
+    <script src="./Script/calculator.js"></script>
   </body>
 </html>
