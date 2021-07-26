@@ -11,6 +11,8 @@ const signEl = document.getElementById("sign");
 const clearAllEl = document.getElementById("clear-all");
 const clearLastEl = document.getElementById("clear-last");
 const backspace = document.getElementById("backspace");
+const savehistoryEl = document.getElementById("history-info");
+const inverse = document.getElementById("inverse");
 
 let result = null;
 let hasDecimalPoint = false;
@@ -18,6 +20,7 @@ let displayNumber = "";
 let tempHistoryVar = "";
 let tempOperator = "";
 let lastOperation = "";
+let savehistory = "";
 
 // display numbers
 for (let i = 0; i < numbers.length; i++) {
@@ -65,29 +68,94 @@ divide.addEventListener("click", e => {
 square.addEventListener("click", e => {
   if (!displayNumber) return;
   hasDecimalPoint = false;
-  const operatorName = "square";
+  // const operatorName = "square";
 
-  // if (displayNumber && tempHistoryVar && lastOperation) {
-  mathOperation(lastOperation);
+  let tempResult = "";
+  tempResult = Math.pow(parseFloat(displayNumber), 2);
 
-  // } else {
-  //   result = parseFloat(displayNumber);
-  // }
-  addToTempHistory(operatorName);
-  lastOperation = operatorName;
+  displayNumber = tempResult;
+  displayEl.innerText = tempResult;
+  // tempHistoryVar += tempResult;
+  tempHistoryEl.innerText = tempHistoryVar;
+
+  if (displayNumber && tempHistoryVar && lastOperation) {
+    mathOperation(lastOperation);
+  } else {
+    result = parseFloat(displayNumber);
+  }
+  // addToTempHistory(operatorName);
+  // lastOperation = operatorName;
+});
+cube.addEventListener("click", e => {
+  if (!displayNumber) return;
+  hasDecimalPoint = false;
+
+  let tempResult = "";
+  tempResult = Math.pow(parseFloat(displayNumber), 3);
+
+  displayNumber = tempResult;
+  displayEl.innerText = tempResult;
+  tempHistoryVar += tempResult;
+  tempHistoryEl.innerText = tempHistoryVar;
+
+  if (displayNumber && tempHistoryVar && lastOperation) {
+    mathOperation(lastOperation);
+  } else {
+    result = parseFloat(displayNumber);
+  }
+});
+squareRoot.addEventListener("click", e => {
+  if (!displayNumber) return;
+  hasDecimalPoint = false;
+
+  let tempResult = "";
+  tempResult = Math.pow(parseFloat(displayNumber), 1 / 2);
+
+  displayNumber = tempResult;
+  displayEl.innerText = tempResult;
+  // tempHistoryVar += tempResult;
+  tempHistoryEl.innerText = tempHistoryVar;
+
+  if (displayNumber && tempHistoryVar && lastOperation) {
+    console.log(displayNumber, tempHistoryVar, lastOperation);
+
+    mathOperation(lastOperation);
+  } else {
+    result = parseFloat(displayNumber);
+  }
+});
+inverse.addEventListener("click", e => {
+  if (!displayNumber) return;
+  hasDecimalPoint = false;
+
+  let tempResult = "";
+  tempResult = 1 / parseFloat(displayNumber);
+
+  displayNumber = tempResult;
+  displayEl.innerText = tempResult;
+  // tempHistoryVar += tempResult;
+  tempHistoryEl.innerText = tempHistoryVar;
+
+  if (displayNumber && tempHistoryVar && lastOperation) {
+    console.log(displayNumber, tempHistoryVar, lastOperation);
+
+    mathOperation(lastOperation);
+  } else {
+    result = parseFloat(displayNumber);
+  }
 });
 
 function addToTempHistory(name) {
-  switch (name) {
-    case "square":
-    case "cube": {
-      tempHistoryVar += " " + name + "(" + displayNumber + ")" + " ";
-      break;
-    }
-    default: {
-      tempHistoryVar += displayNumber + " " + name + " ";
-    }
-  }
+  // switch (name) {
+  //   case "square":
+  //   case "cube": {
+  //     tempHistoryVar += " " + name + "(" + displayNumber + ")" + " ";
+  //     break;
+  //   }
+  //   default: {
+  tempHistoryVar += displayNumber + " " + name + " ";
+  // }
+  // }
 
   tempHistoryEl.innerText = tempHistoryVar;
   displayEl.innerText = "";
@@ -95,7 +163,7 @@ function addToTempHistory(name) {
   displayEl.innerText = result;
 }
 function mathOperation(operator) {
-  console.log(operator);
+  // console.log(operator);
   switch (operator) {
     case "x": {
       result = parseFloat(result) * parseFloat(displayNumber);
@@ -117,10 +185,6 @@ function mathOperation(operator) {
       result = parseFloat(result) / parseFloat(displayNumber);
       break;
     }
-    case "square": {
-      result = Math.pow(parseFloat(displayNumber), 2);
-      break;
-    }
   }
 }
 
@@ -129,8 +193,17 @@ equalEl.addEventListener("click", e => {
   hasDecimalPoint = false;
   mathOperation(lastOperation);
   addToTempHistory();
+  savehistory +=
+    "<li><p>" +
+    tempHistoryVar.replace("undefined", "") +
+    "</p>" +
+    "<h3>" +
+    result +
+    "</h3></li>";
+  savehistoryEl.innerHTML = savehistory;
   console.log(tempHistoryVar);
   displayEl.innerText = result;
+
   tempHistoryEl.innerText = 0;
   tempHistoryVar = "";
   displayNumber = result;
