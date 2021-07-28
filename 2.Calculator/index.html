@@ -100,7 +100,9 @@
             </li>
 
             <li class="item item2">Standard</li>
-            <li class="item"><i class="fas fa-history"></i></li>
+            <li class="item">
+              <i id="history-btn-menu" class="fas fa-history hide-720"></i>
+            </li>
           </ul>
         </nav>
 
@@ -117,7 +119,8 @@
             <div class="memory-key">M*</div>
           </div>
         </div>
-        <div class="key-container">
+
+        <div id="key-container" class="key-container">
           <div class="operation key fr color1">%</div>
           <div id="clear-last" class="key fr color1">CE</div>
           <div id="clear-all" class="key fr color1">C</div>
@@ -160,19 +163,20 @@
             <div id="equal" class="key color1">=</div>
           </div>
         </div>
+        <ul id="history-s" class="history-s"></ul>
       </div>
-      <div class="toggle-container show-720">
+      <div id="toggle-container" class="toggle-container show-720">
         <div class="slide-controls">
           <div class="slide history-btn" id="history-btn">History</div>
           <div class="slide" id="memory-btn">Memory</div>
         </div>
         <div class="overflow-controller">
+          <button id="trash-icon" class="trash-icon hide">
+            <i class="far fa-trash-alt"></i>
+          </button>
           <div class="info-container">
             <ul class="history-info" id="history-info">
               <div>There is no history yet</div>
-              <!-- <button class="trash-icon">
-                <i class="far fa-trash-alt"></i>
-              </button> -->
             </ul>
             <div class="memory-info" id="memory-info">
               <p>There's no Memory yet</p>

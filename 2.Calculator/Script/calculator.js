@@ -13,6 +13,10 @@ const clearLastEl = document.getElementById("clear-last");
 const backspace = document.getElementById("backspace");
 const savehistoryEl = document.getElementById("history-info");
 const inverse = document.getElementById("inverse");
+const trash = document.getElementById("trash-icon");
+// const lastResults = document.getElementsByClassName("last-result");
+
+// const lastResults = document.querySelectorAll(".history-info li");
 
 let result = null;
 let hasDecimalPoint = false;
@@ -20,7 +24,8 @@ let displayNumber = "";
 let tempHistoryVar = "";
 let tempOperator = "";
 let lastOperation = "";
-let savehistory = "";
+// let savehistory = "";
+let savehistory = [];
 
 let tempSymbol = "";
 
@@ -89,11 +94,16 @@ square.addEventListener("click", e => {
 
   displayNumber = tempResult;
   displayEl.innerText = tempResult;
+  result = parseFloat(tempResult);
+
   // tempHistoryVar += tempResult;
   // tempHistoryEl.innerText = tempHistoryVar;
 
   if (displayNumber && tempHistoryVar && lastOperation) {
     mathOperation(lastOperation);
+    result = parseFloat(tempResult);
+
+    // console.log(tempResult, result);
   } else {
     result = parseFloat(displayNumber);
   }
@@ -113,6 +123,7 @@ cube.addEventListener("click", e => {
 
   displayNumber = tempResult;
   displayEl.innerText = tempResult;
+  result = tempResult;
 
   if (displayNumber && tempHistoryVar && lastOperation) {
     mathOperation(lastOperation);
@@ -135,6 +146,7 @@ squareRoot.addEventListener("click", e => {
 
   displayNumber = tempResult;
   displayEl.innerText = tempResult;
+  result = tempResult;
 
   if (displayNumber && tempHistoryVar && lastOperation) {
     // console.log(displayNumber, tempHistoryVar, lastOperation);
@@ -148,14 +160,21 @@ squareRoot.addEventListener("click", e => {
 inverse.addEventListener("click", e => {
   if (!displayNumber) return;
   hasDecimalPoint = false;
+  const operatorName = "inverse";
 
   let tempResult = "";
   tempResult = 1 / parseFloat(displayNumber);
+  if (tempSymbol !== "") {
+    tempHistoryVar = tempHistoryVar.replace(tempSymbol, "");
+  }
+  addToTempHistory(operatorName);
 
   displayNumber = tempResult;
   displayEl.innerText = tempResult;
+  result = tempResult;
+
   // tempHistoryVar += tempResult;
-  tempHistoryEl.innerText = tempHistoryVar;
+  // tempHistoryEl.innerText = tempHistoryVar;
 
   if (displayNumber && tempHistoryVar && lastOperation) {
     // console.log(displayNumber, tempHistoryVar, lastOperation);
@@ -164,9 +183,7 @@ inverse.addEventListener("click", e => {
   } else {
     result = parseFloat(displayNumber);
   }
-  if (tempSymbol !== "") {
-    tempHistoryVar = tempHistoryVar.replace(tempSymbol, "");
-  }
+  lastOperation = operatorName;
 });
 
 function addToTempHistory(name) {
@@ -182,13 +199,17 @@ function addToTempHistory(name) {
       // tempHistoryVar += " " + "√" + "(" + displayNumber + ")" + " ";
       break;
     }
+    case "inverse": {
+      tempSymbol = "1/(" + displayNumber + ")";
+      break;
+    }
     case "/": {
       tempHistoryVar += displayNumber + " " + "÷" + " ";
       tempSymbol = "";
       break;
     }
     default: {
-      console.log(tempHistoryVar);
+      // console.log(tempHistoryVar);
       // tempSymbol = displayNumber + " " + name + " ";
       tempHistoryVar += displayNumber + " " + name + " ";
       tempSymbol = "";
@@ -238,34 +259,43 @@ equalEl.addEventListener("click", e => {
   if (tempSymbol === "") {
     addToTempHistory("");
   }
+  // console.log(result);
+  savehistory.push(
+    '<li class="last-result" ><p>' +
+      tempHistoryVar +
+      " = " +
+      "</p>" +
+      "<h3>" +
+      result +
+      "</h3></li>"
+  );
 
-  savehistory +=
-    "<li><p>" +
-    tempHistoryVar +
-    " = " +
-    "</p>" +
-    "<h3>" +
-    result +
-    "</h3></li>";
+  for (let i = 0; i < savehistory.length; i++) {
+    if (i === 0) {
+      savehistoryEl.innerHTML = savehistory[0];
+    } else {
+      savehistoryEl.innerHTML += savehistory[i];
+    }
+  }
+  trash.style.display = "inline-block";
 
-  savehistoryEl.innerHTML = savehistory;
-  // console.log(tempHistoryVar.replace(result, ""));
-  // console.log(tempHistoryVar, result);
+  // savehistory +=
+  //   "<li><p>" +
+  //   tempHistoryVar +
+  //   " = " +
+  //   "</p>" +
+  //   "<h3>" +
+  //   result +
+  //   "</h3></li>";
 
-  // if (tempSymbol.includes("sqr")) {
-  //   console.log("inside if");
-  //   console.log(tempHistoryEl);
-  //   tempHistoryEl.innerText = tempHistoryEl.innerText
-  //     .replace(result, "")
-  //     .replace("undefined", " = ");
-  // } else {
+  // savehistoryEl.innerHTML = savehistory;
+
   tempHistoryEl.innerText = tempHistoryVar + " = ";
-  // }
 
   displayEl.innerText = result;
 
   tempHistoryVar = "";
-  displayNumber = result;
+  displayNumber = "";
 });
 signEl.addEventListener("click", e => {
   if (!displayNumber) return;
@@ -296,6 +326,13 @@ backspace.addEventListener("click", () => {
     }
     displayEl.innerText = displayNumber;
   }
+});
+
+trash.addEventListener("click", () => {
+  savehistory.length = 0;
+  savehistoryEl.innerHTML = "<div>There is no history yet</div>";
+
+  trash.style.display = "none";
 });
 
 // keyboad functionality:
