@@ -105,7 +105,7 @@
         </nav>
 
         <div class="display-container">
-          <p id="temp-history" class="display-p">0</p>
+          <p id="temp-history" class="display-p"></p>
           <h1 id="display" class="display-text">0</h1>
 
           <div class="memory-options">
@@ -139,25 +139,25 @@
             <div class="number key">7</div>
             <div class="number key">8</div>
             <div class="number key">9</div>
-            <div class="operation key">x</div>
+            <div class="operation color2 key">x</div>
           </div>
           <div class="row row2">
             <div class="number key">4</div>
             <div class="number key">5</div>
             <div class="number key">6</div>
-            <div class="operation key">-</div>
+            <div class="operation color2 key">-</div>
           </div>
           <div class="row row3">
             <div class="number key">1</div>
             <div class="number key">2</div>
             <div class="number key">3</div>
-            <div class="operation key">+</div>
+            <div class="operation color2 key">+</div>
           </div>
           <div class="row row4">
-            <div id="sign" class="key">+/-</div>
+            <div id="sign" class="key color2">+/-</div>
             <div class="number key">0</div>
-            <div class="number key">.</div>
-            <div id="equal" class="key color2">=</div>
+            <div class="number key color2">.</div>
+            <div id="equal" class="key color1">=</div>
           </div>
         </div>
       </div>
@@ -169,9 +169,10 @@
         <div class="overflow-controller">
           <div class="info-container">
             <ul class="history-info" id="history-info">
-              <li>
-                <p>There is no histry yet</p>
-              </li>
+              <div>There is no history yet</div>
+              <!-- <button class="trash-icon">
+                <i class="far fa-trash-alt"></i>
+              </button> -->
             </ul>
             <div class="memory-info" id="memory-info">
               <p>There's no Memory yet</p>

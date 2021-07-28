@@ -22,6 +22,8 @@ let tempOperator = "";
 let lastOperation = "";
 let savehistory = "";
 
+let tempSymbol = "";
+
 // display numbers
 for (let i = 0; i < numbers.length; i++) {
   numbers[i].addEventListener("click", e => {
@@ -48,7 +50,12 @@ for (let i = 0; i < operations.length; i++) {
     } else {
       result = parseFloat(displayNumber);
     }
+
+    if (tempSymbol !== "") {
+      tempHistoryVar = tempHistoryVar.replace(tempSymbol, "");
+    }
     addToTempHistory(operatorName);
+
     lastOperation = operatorName;
   });
 }
@@ -62,67 +69,81 @@ divide.addEventListener("click", e => {
   } else {
     result = parseFloat(displayNumber);
   }
+  if (tempSymbol !== "") {
+    tempHistoryVar = tempHistoryVar.replace(tempSymbol, "");
+  }
   addToTempHistory(operatorName);
   lastOperation = operatorName;
 });
 square.addEventListener("click", e => {
   if (!displayNumber) return;
   hasDecimalPoint = false;
-  // const operatorName = "square";
+  const operatorName = "sqr";
 
   let tempResult = "";
   tempResult = Math.pow(parseFloat(displayNumber), 2);
+  if (tempSymbol !== "") {
+    tempHistoryVar = tempHistoryVar.replace(tempSymbol, "");
+  }
+  addToTempHistory(operatorName);
 
   displayNumber = tempResult;
   displayEl.innerText = tempResult;
   // tempHistoryVar += tempResult;
-  tempHistoryEl.innerText = tempHistoryVar;
+  // tempHistoryEl.innerText = tempHistoryVar;
 
   if (displayNumber && tempHistoryVar && lastOperation) {
     mathOperation(lastOperation);
   } else {
     result = parseFloat(displayNumber);
   }
-  // addToTempHistory(operatorName);
-  // lastOperation = operatorName;
+  lastOperation = operatorName;
 });
 cube.addEventListener("click", e => {
   if (!displayNumber) return;
   hasDecimalPoint = false;
+  const operatorName = "cube";
 
   let tempResult = "";
   tempResult = Math.pow(parseFloat(displayNumber), 3);
+  if (tempSymbol !== "") {
+    tempHistoryVar = tempHistoryVar.replace(tempSymbol, "");
+  }
+  addToTempHistory(operatorName);
 
   displayNumber = tempResult;
   displayEl.innerText = tempResult;
-  tempHistoryVar += tempResult;
-  tempHistoryEl.innerText = tempHistoryVar;
 
   if (displayNumber && tempHistoryVar && lastOperation) {
     mathOperation(lastOperation);
   } else {
     result = parseFloat(displayNumber);
   }
+  lastOperation = operatorName;
 });
 squareRoot.addEventListener("click", e => {
   if (!displayNumber) return;
   hasDecimalPoint = false;
+  const operatorName = "sqr-root";
 
   let tempResult = "";
   tempResult = Math.pow(parseFloat(displayNumber), 1 / 2);
+  if (tempSymbol !== "") {
+    tempHistoryVar = tempHistoryVar.replace(tempSymbol, "");
+  }
+  addToTempHistory(operatorName);
 
   displayNumber = tempResult;
   displayEl.innerText = tempResult;
-  // tempHistoryVar += tempResult;
-  tempHistoryEl.innerText = tempHistoryVar;
 
   if (displayNumber && tempHistoryVar && lastOperation) {
-    console.log(displayNumber, tempHistoryVar, lastOperation);
+    // console.log(displayNumber, tempHistoryVar, lastOperation);
 
     mathOperation(lastOperation);
   } else {
     result = parseFloat(displayNumber);
   }
+  lastOperation = operatorName;
 });
 inverse.addEventListener("click", e => {
   if (!displayNumber) return;
@@ -137,27 +158,46 @@ inverse.addEventListener("click", e => {
   tempHistoryEl.innerText = tempHistoryVar;
 
   if (displayNumber && tempHistoryVar && lastOperation) {
-    console.log(displayNumber, tempHistoryVar, lastOperation);
+    // console.log(displayNumber, tempHistoryVar, lastOperation);
 
     mathOperation(lastOperation);
   } else {
     result = parseFloat(displayNumber);
   }
+  if (tempSymbol !== "") {
+    tempHistoryVar = tempHistoryVar.replace(tempSymbol, "");
+  }
 });
 
 function addToTempHistory(name) {
-  // switch (name) {
-  //   case "square":
-  //   case "cube": {
-  //     tempHistoryVar += " " + name + "(" + displayNumber + ")" + " ";
-  //     break;
-  //   }
-  //   default: {
-  tempHistoryVar += displayNumber + " " + name + " ";
-  // }
-  // }
+  switch (name) {
+    case "sqr":
+    case "cube": {
+      tempSymbol = " " + name + "(" + displayNumber + ")" + " ";
+      // tempHistoryVar += " " + name + "(" + displayNumber + ")" + " ";
+      break;
+    }
+    case "sqr-root": {
+      tempSymbol = " " + "√" + "(" + displayNumber + ")" + " ";
+      // tempHistoryVar += " " + "√" + "(" + displayNumber + ")" + " ";
+      break;
+    }
+    case "/": {
+      tempHistoryVar += displayNumber + " " + "÷" + " ";
+      tempSymbol = "";
+      break;
+    }
+    default: {
+      console.log(tempHistoryVar);
+      // tempSymbol = displayNumber + " " + name + " ";
+      tempHistoryVar += displayNumber + " " + name + " ";
+      tempSymbol = "";
+    }
+  }
 
+  tempHistoryVar += tempSymbol;
   tempHistoryEl.innerText = tempHistoryVar;
+
   displayEl.innerText = "";
   displayNumber = "";
   displayEl.innerText = result;
@@ -185,6 +225,9 @@ function mathOperation(operator) {
       result = parseFloat(result) / parseFloat(displayNumber);
       break;
     }
+    default:
+      // console.log("hii", result);
+      break;
   }
 }
 
@@ -192,19 +235,35 @@ equalEl.addEventListener("click", e => {
   if (!displayNumber || !tempHistoryVar) return;
   hasDecimalPoint = false;
   mathOperation(lastOperation);
-  addToTempHistory();
+  if (tempSymbol === "") {
+    addToTempHistory("");
+  }
+
   savehistory +=
     "<li><p>" +
-    tempHistoryVar.replace("undefined", "") +
+    tempHistoryVar +
+    " = " +
     "</p>" +
     "<h3>" +
     result +
     "</h3></li>";
+
   savehistoryEl.innerHTML = savehistory;
-  console.log(tempHistoryVar);
+  // console.log(tempHistoryVar.replace(result, ""));
+  // console.log(tempHistoryVar, result);
+
+  // if (tempSymbol.includes("sqr")) {
+  //   console.log("inside if");
+  //   console.log(tempHistoryEl);
+  //   tempHistoryEl.innerText = tempHistoryEl.innerText
+  //     .replace(result, "")
+  //     .replace("undefined", " = ");
+  // } else {
+  tempHistoryEl.innerText = tempHistoryVar + " = ";
+  // }
+
   displayEl.innerText = result;
 
-  tempHistoryEl.innerText = 0;
   tempHistoryVar = "";
   displayNumber = result;
 });
@@ -215,7 +274,7 @@ signEl.addEventListener("click", e => {
 });
 clearAllEl.addEventListener("click", () => {
   displayEl.innerText = 0;
-  tempHistoryEl.innerText = 0;
+  tempHistoryEl.innerText = "";
   displayNumber = "";
   tempHistoryVar = "";
   result = "";
@@ -229,7 +288,12 @@ backspace.addEventListener("click", () => {
     displayNumber = "";
     displayEl.innerText = 0;
   } else {
-    displayNumber = displayNumber.substring(0, displayNumber.length - 1);
+    if (displayNumber.toString() !== displayNumber) {
+      // if displayNumber is not a string we cant use backspace
+      return;
+    } else {
+      displayNumber = displayNumber.substring(0, displayNumber.length - 1);
+    }
     displayEl.innerText = displayNumber;
   }
 });

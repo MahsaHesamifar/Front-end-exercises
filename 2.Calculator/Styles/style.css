@@ -38,20 +38,25 @@ nav {
   align-items: center;
   padding: 3%;
 }
+.item i {
+  cursor: pointer;
+}
 .navbar .item2 {
   flex: 1 1 auto;
 }
+
 .sub-menu {
   position: fixed;
   top: 55px;
-  /* left: -70%; */
-  left: 0;
+  left: -70%;
+  /* left: 0; */
   bottom: 0;
   width: 70%;
-  display: none;
+  display: flex;
   flex-direction: column;
   overflow-y: scroll;
   background-color: #eff1ff;
+  transition: all 0.6s;
 
   padding: 10px;
 }
@@ -75,7 +80,7 @@ nav {
   background-color: #dee2ff;
 }
 .sub-item > a {
-  color: rgb(63, 63, 63);
+  color: rgb(38, 38, 38);
   text-decoration: none;
   font-weight: normal;
   display: inline-block;
@@ -144,6 +149,10 @@ nav {
   background-color: white;
   font-weight: bold;
 }
+.key sup {
+  margin-top: -4px;
+  font-size: 12px;
+}
 .key:hover {
   background-color: rgb(235, 235, 235);
 }
@@ -173,6 +182,9 @@ nav {
 .color1:hover {
   background-color: #c6b0d6;
 }
+.color1:focus {
+  background-color: #610a9f;
+}
 .color2 {
   background-color: #feeafa;
 }
@@ -194,47 +206,81 @@ nav {
 }
 .slide {
   width: auto;
-  height: 80%;
+  height: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0 20px;
+  cursor: pointer;
+}
+.slide:hover {
+  color: rgb(92, 92, 92);
 }
 .history-btn {
-  border-bottom: 4px solid #6f798a;
+  border-bottom: 3px solid #6f798a;
 }
 .overflow-controller {
+  padding-top: 10px;
   width: 100%;
   height: 90%;
   overflow: hidden;
 }
 .info-container {
-  padding: 10px;
   display: flex;
   width: 200%;
   height: 100%;
 }
 .history-info,
 .memory-info {
-  transition: all 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
   width: 50%;
   height: 100%;
 }
 .history-info {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
   list-style: none;
+  max-height: 100%;
+  /* overflow-y: scroll; */
 }
 .history-info li {
-  padding: 10px 20px;
+  padding: 7px 20px;
+  width: 99%;
+  margin-left: 1%;
+  text-align: right;
+}
+.history-info li:hover {
+  background-color: #c3c6de;
 }
 .history-info li p {
   color: gray;
-  font-size: 14px;
+  font-size: 13px;
+  /* letter-spacing: 3px; */
+}
+.history-info li h3 {
+  padding-top: 5px;
+  font-size: 22px;
 }
 .show-960 {
   display: none;
 }
 .show-720 {
   display: none;
+}
+.trash-icon {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 50px;
+  height: 47px;
+  font-size: 1.3rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.trash-icon:hover {
+  background-color: #c3c6de;
 }
 
 @media screen and (min-width: 480px) {
